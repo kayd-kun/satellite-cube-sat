@@ -1,0 +1,11 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{ title }} - My Website</title>
+    </head>
+    <body>
+        <h1>Hello, {{ user.username }}!</h1>
+        <p>This is an image:</p>
+        <img style="max-width:50%; height:auto;" src="{{ url_for('static', filename='images/test.png')}}"
+    </body>
+</html>

@@ -1,12 +1,15 @@
 from flask import Flask, jsonify
 import os
+from flask import render_template
 
 app = Flask(__name__)
 
 
 @app.route('/')
+@app.route('/index')
 def index():
-    return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
+    user = {'username': 'User'}
+    return render_template('index.html', title='Home', user=user)
 
 
 if __name__ == '__main__':
