@@ -1,0 +1,16 @@
+setup:
+
+create a python virtual env:
+python -m venv env
+source/Scripts/activate 
+
+Install packages
+pip install -r requirements.txt
+
+if you are using npm perform (make sure you have node installed)
+npm install
+I used yarn so:
+yarn install
+
+setup tailwind server:
+npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch
