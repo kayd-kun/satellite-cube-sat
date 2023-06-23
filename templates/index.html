@@ -3,12 +3,151 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
-        <title>{{ title }} - My Website</title>
+        <title>{{ title }} - Dashboard</title>
     </head>
     <body>
-        <h1>Hello, {{ user.username }}!</h1>
-        <h1 class="text-blue-600"> Tailwind Test </h1>
-        <p>This is an:</p>
-        <img style="max-width:50%; height:auto;" src="{{ url_for('static', filename='images/test.png')}}"/>
+        <div class="min-h-full">
+            <nav class="bg-gray-800">
+              <div class=" max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="flex h-16 items-center justify-between">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 ml-10">
+                      <img class="h-12 w-17" src="./static/images/Kora.PNG" alt="KORA-1 logo">
+                    </div>
+                    <div class="hidden md:block">
+                      <div class="ml-5 flex mb-2 space-x-4">
+                        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                        <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+            </div>
+            </nav>
+
+
+            <main>
+                <section class="flex text-white">
+                  <div class=" w-[68vw] px-5 sm:px-6 lg:px-20">
+                    <div class="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
+
+                        <div class="flex items-start gap-4 ">
+                          <div
+                            class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                              >
+                              <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                <div class="flex flex-col  px-4 py-8 text-center">
+                                  <dt class="order-last text-lg font-bold text-black">
+                                    Altitude
+                                  </dt>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl hover:-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400">2400 m</dd>
+                                  </div>
+                              </a>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-4 ">
+                          <div
+                            class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                              >
+                              <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                <div class="flex flex-col  px-4 py-8 text-center">
+                                  <dt class="order-last text-lg font-bold text-black">
+                                    Temperature
+                                  </dt>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">21°</dd>
+                                  </div>
+                              </a>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-4 ">
+                          <div
+                            class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                              >
+                              <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                <div class="flex flex-col  px-4 py-8 text-center">
+                                  <dt class="order-last text-lg font-bold text-black">
+                                    Pressure
+                                  </dt>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">30 psi</dd>
+                                  </div>
+                              </a>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-4 ">
+                          <div
+                            class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                              >
+                              <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                <div class="flex flex-col  px-4 py-8 text-center">
+                                  <dt class="order-last text-lg font-bold text-black">
+                                    Humidity
+                                  </dt>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">11 g/kg</dd>
+                                  </div>
+                              </a>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-4 ">
+                          <div
+                            class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                              >
+                              <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                <div class="flex flex-col  px-4 py-8 text-center">
+                                  <dt class="order-last text-lg font-bold text-black">
+                                    VCO index
+                                  </dt>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">50 AQI</dd>
+                                  </div>
+                              </a>
+                          </div>
+                        </div>
+                        <div class="flex items-start gap-4 ">
+                          <div class="rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                            <a class="w-[340px] h-[200px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
+                              <div class="flex flex-col px-4 text-center">
+                                <dt class="order-last text-lg font-bold text-black">
+                                  Location
+                                </dt>
+                                <div class="flex flex-row justify-center ">
+                                  <div class="flex flex-col">
+                                    <dd class="text-xl font-bold text-gray-500 text-center mt-4">Longitude:</dd>
+                                    <dd class="text-xl font-bold text-gray-500 mt-7">Latitude:</dd>
+                                  </div>
+                                  <div class="flex flex-col">
+                                    <dd class="text-5xl font-extrabold text-blue-600  mb-2">124° </dd>
+                                    <dd class="text-5xl font-extrabold text-blue-600 ">169° </dd>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </div>
+                          
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class=" w-[32vw] mr-5">
+                    <div class="mt-16 "> 
+                      <div class="flex items-start ">
+                      <div
+                        class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105"
+                          >
+                          <a class="w-[550px] h-[730px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                            <div class="mt-16">
+                              <img class="" src="./static/images/test.png" alt="map">
+
+                            </div>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+                   
+                  </div>
+                </section> 
+                
+                
+            </main>
+          </div>
     </body>
 </html>
