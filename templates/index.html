@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
-        <title>{{ title }} - Dashboard</title>
+        <title>Kora-1 - Dashboard</title>
     </head>
     <body>
         <div class="min-h-full">
@@ -50,7 +50,7 @@
                                   <dt class="order-last text-lg font-bold text-black mt-5">
                                     Altitude
                                   </dt>
-                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl ">2400 m</dd>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl "><span id="altitude">50</span> m</dd>
                                   </div>
                               </a>
                           </div>
@@ -88,7 +88,7 @@
                                   <dt class="order-last text-lg font-bold text-black mt-6">
                                     Temperature
                                   </dt>
-                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">40°</dd>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="temperature">50</span>°</dd>
                                   </div>
                               </a>
                           </div>
@@ -112,7 +112,7 @@
                                   <dt class="order-last text-lg font-bold text-black mt-6">
                                     Pressure
                                   </dt>
-                                  <dd class="text-4xl font-extrabold text-blue-600 mt-5 md:text-5xl">30 psi</dd>
+                                  <dd class="text-4xl font-extrabold text-blue-600 mt-5 md:text-5xl"><span id="pressure">50</span> psi</dd>
                                   </div>
                               </a>
                           </div>
@@ -126,7 +126,7 @@
                                   <dt class="order-last text-lg font-bold text-black mt-6">
                                     Humidity
                                   </dt>
-                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">11 g/kg</dd>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="humidity">50</span> g/kg</dd>
                                   </div>
                               </a>
                           </div>
@@ -153,7 +153,7 @@
                                   <dt class="order-last text-lg font-bold text-black mt-6">
                                     VCO index
                                   </dt>
-                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">50 AQI</dd>
+                                  <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="vco_index">50</span> AQI</dd>
                                   </div>
                               </a>
                           </div>
@@ -171,8 +171,8 @@
                                     <dd class="text-2xl font-bold text-gray-500 mt-7">Latitude:</dd>
                                   </div>
                                   <div class="flex flex-col">
-                                    <dd class="text-5xl font-extrabold text-blue-600  mb-2">124° </dd>
-                                    <dd class="text-5xl font-extrabold text-blue-600 ">169° </dd>
+                                    <dd class="text-5xl font-extrabold text-blue-600  mb-2"><span id="latitude">122</span>° </dd>
+                                    <dd class="text-5xl font-extrabold text-blue-600 "><span id="longitude">169</span>° </dd>
                                   </div>
                                 </div>
                               </div>
@@ -205,5 +205,62 @@
                 
             </main>
           </div>
+          <script>
+            async function getData() {
+              const response = await fetch('/get_data')
+              const jsonData = await response.json()
+              console.log('Data in json:')
+              console.log(jsonData)
+
+              // Update data on page
+              updateData(jsonData)
+            }
+
+            // TESTING
+            // Send data to /post_data
+            async function postData() {
+              data_to_send = 
+                  {
+                      "altitude": "00",
+                      "temperature": "0",
+                      "pressure": "10",
+                      "humidity": "0",
+                      "vco index": "8",
+                      "latitude": "8",
+                      "longitude": "8"
+                  }
+
+              const response = await fetch('/post_data', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data_to_send)
+              })
+              const data = await response.json()
+              console.log('Data sent and received from server:')
+              console.log(data)
+            }
+
+            // postData()
+
+            // Update data on page
+            function updateData(jsonData) {
+              console.log('Data in json:')
+              console.log(jsonData)
+
+              // Update data on page
+              document.getElementById('altitude').innerHTML = jsonData['altitude']
+              document.getElementById('temperature').innerHTML = jsonData['temperature']
+              document.getElementById('pressure').innerHTML = jsonData['pressure']
+              document.getElementById('humidity').innerHTML = jsonData['humidity']
+              document.getElementById('vco_index').innerHTML = jsonData['vco index']
+              document.getElementById('latitude').innerHTML = jsonData['latitude']
+              document.getElementById('longitude').innerHTML = jsonData['longitude']
+            }
+
+            setInterval(getData, 3000)
+
+            </script>
     </body>
 </html>
