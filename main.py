@@ -35,6 +35,12 @@ def get_json_data():
     new_data = fetch_data()
     return jsonify(new_data)
 
+# Return the processed image
+@app.route('/get_image', methods=['GET'])
+def get_image():
+    image_path = 'static/images/processed_image.jpg'
+
+
 # Route that will accept POST data and save it to data.json
 @app.route('/post_data', methods=['POST'])
 def post_json_data():

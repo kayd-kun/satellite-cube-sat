@@ -27,8 +27,8 @@ for file in files_in_a_bucket:
     if file_name not in downloaded_images:
         # if file_name == '.emptyFolderPlaceholder':
         #     continue
-        download_destination += file_name
-        with open(download_destination, 'wb+') as f:
+        download_destination_temp = download_destination + file_name
+        with open(download_destination_temp, 'wb+') as f:
             res = supabase.storage.from_(bucket_name).download(file_name)
             print('Downloaded successfully')
             f.write(res)
