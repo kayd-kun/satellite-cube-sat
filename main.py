@@ -16,6 +16,8 @@ import time
 #     "longitude": "78"
 # }
 
+max_altitude = 0
+
 app = Flask(__name__)
 data = None
 
@@ -29,6 +31,18 @@ def fetch_data():
     # Read data from data.json file
     data = json.load(open('data.json'))
     return data
+
+# Check max altitude and return
+def check_max_altitude(data):
+    global max_altitude
+    if data['altitude'] > max_altitude:
+        max_altitude = data['altitude']
+    return max_altitude
+
+# Append received json to data_logs.txt file
+def append_to_file(data):
+    with open('data_logs.txt', 'a') as f:
+        f.write(data + '\n')
 
 @app.route('/get_data', methods=['GET'])
 def get_json_data():
@@ -47,6 +61,7 @@ def post_json_data():
     if request.method == 'POST':
         data = request.get_json()
         print('Received data: ', data)
+        append_to_file(str(data))
         with open('data.json', 'w') as f:
             json.dump(data, f)
         return jsonify(data)
