@@ -10,7 +10,392 @@
             <nav class="bg-gray-800">
               <div class=" max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
-                  <div class="flex items-center">
+                  <div class="fl<!doctype html>
+                    <html>
+                    
+                    <head>
+                      <meta charset="utf-8">
+                      <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
+                      <title>Kora-1 - Dashboard</title>
+                      <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+                      <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+                      <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+                    
+                    </head>
+                    
+                    <body>
+                      <div class="min-h-full">
+                        <nav class="bg-gray-800">
+                          <div class=" px-4 sm:px-6 lg:px-8">
+                    
+                            <div class="flex h-16 ">
+                              <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                  <div class="flex-shrink-0 ml-10">
+                                    <!-- Logo -->
+                                    <img class="h-12 w-17" src="./static/images/Kora.PNG" alt="KORA-1 logo">
+                                  </div>
+                                  <div class="hidden md:block">
+                                    <div class="ml-5 flex mb-2 space-x-4">
+                                      <h1 class="text-3xl font-bold tracking-tight text-white">Dashboard</h1>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- battery bar -->
+                              <div class="flex items-center" style="margin-left: auto;">
+                                <div class="w-48">
+                                  <div class="shadow w-1/2 rounded border-2 border-gray-300 flex my-1 relative">
+                                    <div class="border-r-8 h-6 rounded-r absolute flex border-gray-300 ml-24 mt-2 z-10"></div>
+                                    <div
+                                      class="cursor-default bg-green-400 text-xs font-bold leading-none flex items-center justify-center m-1 py-4 text-center text-white"
+                                      style="width: 100px; background-color: rgb(58, 223, 58);">
+                                      <div class="absolute left-0 mx-8 text-black font-bold">100%</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </nav>
+                    
+                    
+                      </div>
+                      </nav>
+                    
+                    
+                      <main>
+                        <section class="flex text-white">
+                          <div class=" w-[68vw] px-5 sm:px-6 lg:px-20">
+                            <div class="mt-8 grid grid-cols-1 gap-8 md:mt-16 md:grid-cols-2 md:gap-12 lg:grid-cols-3">
+                    
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class="rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[340px] h-[250px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
+                                    <div class="relative mb-5 pt-1">
+                                      <div id="progress-bar" class="mb-4 flex h-4 overflow-hidden rounded bg-gray-200 text-xs mt-5">
+                                        <div id="progress-bar-fill" style="width: 0%; animation: AltitudeAnimation 1s linear;"
+                                          class="bg-sky-500"></div>
+                                      </div>
+                                      <div class="mb-2 flex items-center justify-between text-xs">
+                                        <div class="text-gray-600">0 m</div>
+                                        <div class="text-gray-600">5000 m</div>
+                                      </div>
+                                    </div>
+                                    <div class="flex flex-col px-4 text-center">
+                                      <dt class="order-last text-lg font-bold text-black mt-5">
+                                        Altitude
+                                      </dt>
+                                      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">
+                                        <span id="altitude">0000</span> m
+                                      </dd>
+                                    </div>
+                                  </a>
+                                </div>
+                    
+                    
+                                <script>
+                                  (async () => {
+                                    const response = await fetch('/get_data');
+                                    const jsonData = await response.json();
+                    
+                                    const altitudeValue = Number(jsonData.altitude);
+                                    const progressBarFill = document.getElementById('progress-bar-fill');
+                                    progressBarFill.style.width = `${altitudeValue / 5000 * 100}%`;
+                                    progressBarFill.style.animation = 'AltitudeAnimation 1s linear';
+                    
+                                    const altitudeElement = document.getElementById('altitude');
+                                    altitudeElement.textContent = altitudeValue;
+                                  })();
+                                </script>
+                                <style>
+                                  @keyframes AltitudeAnimation {
+                                    0% {
+                                      width: 0%;
+                                    }
+                    
+                                    100% {
+                                      width: 100%;
+                                    }
+                                  }
+                                </style>
+                    
+                    
+                              </div>
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="flex w-[340px] h-[250px]  rounded-xl bg-white p-4 sm:p-6 lg:p-8" href="">
+                                    <div class="ml-5">
+                                      <div class="relative rounded-full border border-blue-500 p-1 mb-2" style="height: 100%; width:200%;">
+                                        <div class="absolute bottom-0 left-0 right-0 bg-sky-500 rounded-full text-xs leading-none"
+                                          style=" height: 40%; animation: progressAnimation 1s linear ;">
+                                        </div>
+                                      </div>
+                                    </div>
+                    
+                                    <style>
+                                      @keyframes progressAnimation {
+                                        0% {
+                                          height: 0%;
+                                        }
+                    
+                                        100% {
+                                          height: 40%;
+                                        }
+                                      }
+                                    </style>
+                    
+                    
+                                    <div class="flex flex-col  px-10 py-8 text-center ml-8 mt-5">
+                    
+                                      <dt class="order-last text-lg font-bold text-black mt-6">
+                                        Temperature
+                                      </dt>
+                                      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="temperature">50</span>°</dd>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[340px] h-[250px] block rounded-xl bg-white p-4 sm:p-6 lg:p-8 " href="">
+                                    <div class="flex flex-col  px-4 py-8 text-center">
+                                      <div class="mb-2 flex gap-2">
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-blue-600"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-blue-500"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-blue-400"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-blue-300"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-blue-250"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500 bg-green-250"></span>
+                                        <span class="mb-2 h-[15px] flex-1 rounded-xl border border-gray-500"></span>
+                    
+                                      </div>
+                                      <dt class="order-last text-lg font-bold text-black mt-6">
+                                        Pressure
+                                      </dt>
+                                      <dd class="text-4xl font-extrabold text-blue-600 mt-5 "><span id="pressure">0000</span> hPa
+                                      </dd>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[340px] h-[250px] block rounded-xl bg-white p-4 " href="">
+                                    <img class="mx-auto" style="width: 50px; height: 78px;" src=".\static\images\water.png" />
+                                    <div class="flex flex-col  px-4  text-center " style="padding-top: 18px;">
+                                      <dt class="order-last text-lg font-bold text-black mt-5">
+                                        Humidity
+                                      </dt>
+                                      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="humidity">00</span></dd>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[340px] h-[250px] block rounded-xl bg-white p-4  " href="">
+                                    <img class="mx-auto" style="width: 120px; height: 90px;" src=".\static\images\air.png" />
+                                    <div class="flex flex-col  px-4 pt-1 text-center ">
+                                      <dt class="order-last text-lg font-bold text-black mt-6">
+                                        VOC index
+                                      </dt>
+                                      <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl"><span id="vco_index">00</span> AQI</dd>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                              <div class="flex items-start gap-4 ">
+                                <div
+                                  class="rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[340px] h-[250px] block rounded-xl bg-white p-4 " href="">
+                                    <div class="flex flex-col  text-center mt-4">
+                                      <dt class="order-last text-lg font-bold text-black mt-4">
+                                        Location
+                                      </dt>
+                                      <div class="flex flex-row mt-4 ">
+                                        <div class="flex flex-col justify-left ">
+                                          <dd class="text-2xl font-bold text-gray-500 text-center mt-4" style="margin-left: 4px;">Longitude:
+                                          </dd>
+                                          <dd class="text-2xl font-bold text-gray-500 mt-7" style="margin-right: 15px;">Latitude:</dd>
+                                        </div>
+                                        <div class="flex flex-col " style="margin-top: 12px;">
+                                          <dd class="text-3xl font-extrabold text-blue-600 "><span id="latitude"> 00.000</span>° E</dd>
+                                          <dd class="text-3xl font-extrabold text-blue-600  mb-2"
+                                            style="margin-top: 22px; margin-left: 4px;"><span id="longitude">00.000</span>° N </dd>
+                    
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                             <!-- max altitude -->
+                             <div class="flex items-start gap-4 ">
+                              <div
+                                class="rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                <a class="w-[340px] h-[100px] block rounded-xl bg-white p-4 " href="">
+                                  <div class="flex items-center p-4 bg-white rounded">
+                                    <img class="w-16 h-16 rounded-full" src=".\static\images\altitude.png" alt="altitude" />
+                                    <div class="flex-grow flex flex-col ml-4">
+                                      <span class="text-xl font-bold">$8,430</span>
+                                      <div class="flex items-center justify-between">
+                                        <span class="text-gray-500">Revenue last 30 days</span>
+                                        <span class="text-green-500 text-sm font-semibold ml-2">+12.6%</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </a>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                    
+                    
+                    
+                          <!-- Map and image section -->
+                          <div class=" w-[32vw] mr-5">
+                            <div class="mt-16 ">
+                              <div class="flex flex-col items-start ">
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105">
+                                  <a class="w-[550px] h-[] block  bg-white  " style=" overflow: hidden; border-radius: 12px;">
+                                    <div id="map"></div>
+                    
+                    
+                                    <style>
+                                      #map {
+                                        height: 400px;
+                                        width: 100%
+                                      }
+                                    </style>
+                    
+                                    <script>
+                                      mapboxgl.accessToken = 'pk.eyJ1Ijoia2xvZHMiLCJhIjoiY2xqYm5ld253MGt4NDNtbmx1MDNvYXYwZyJ9.nEl271O6btLRArZeRENeUw';
+                    
+                                      const latitude = 26.863960;
+                                      const longitude = 89.383736;
+                    
+                                      // Create a map instance
+                                      const map = new mapboxgl.Map({
+                                        container: 'map',
+                                        style: 'mapbox://styles/mapbox/streets-v11',
+                                        center: [longitude, latitude],
+                                        zoom: 15
+                                      });
+                    
+                                      // Add a marker at the location
+                                      new mapboxgl.Marker()
+                                        .setLngLat([longitude, latitude])
+                                        .addTo(map);
+                    
+                                      // Reverse geocode the location
+                                      fetch('https://api.mapbox.com/geocoding/v5/mapbox.places/${longitude},${latitude}.json?access_token=${mapboxgl.accessToken}')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                          // Get the address from the API response
+                                          const address = data.features[0].place_name;
+                    
+                                          // Display the address on the map
+                                          new mapboxgl.Popup()
+                                            .setLngLat([longitude, latitude])
+                                            .setHTML(`<p>${address}</p>`)
+                                            .addTo(map);
+                                        })
+                                        .catch(error => {
+                                          console.error(error);
+                                        });
+                                    </script>
+                    
+                    
+                    
+                                  </a>
+                                </div>
+                    
+                                <div
+                                  class=" rounded-2xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-400 p-1 shadow-xl transition duration-300 ease-in-out hover:scale-105 mt-16">
+                                  <a class="w-[550px] h-[400px] block  bg-white  " style=" overflow: hidden; border-radius: 12px;">
+                                    <div>
+                                      <img class="" src=".\static\images\test.png" alt="image processes">
+                                    </div>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                    
+                          </div>
+                        </section>
+                    
+                    
+                      </main>
+                    
+                      </div>
+                    
+                      <script>
+                        async function getData() {
+                          const response = await fetch('/get_data')
+                          const jsonData = await response.json()
+                          console.log('Data in json:')
+                          console.log(jsonData)
+                    
+                          // Update data on page
+                          updateData(jsonData)
+                        }
+                    
+                        // TESTING
+                        // Send data to /post_data
+                        async function postData() {
+                          data_to_send =
+                          {
+                            "altitude": "00",
+                            "temperature": "0",
+                            "pressure": "10",
+                            "humidity": "0",
+                            "vco index": "8",
+                            "latitude": "8",
+                            "longitude": "8"
+                          }
+                    
+                          const response = await fetch('/post_data', {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data_to_send)
+                          })
+                          const data = await response.json()
+                          console.log('Data sent and received from server:')
+                          console.log(data)
+                        }
+                    
+                        // postData()
+                    
+                        // Update data on page
+                        function updateData(jsonData) {
+                          console.log('Data in json:')
+                          console.log(jsonData)
+                    
+                          // Update data on page
+                          document.getElementById('altitude').innerHTML = jsonData['altitude']
+                          document.getElementById('temperature').innerHTML = jsonData['temperature']
+                          document.getElementById('pressure').innerHTML = jsonData['pressure']
+                          document.getElementById('humidity').innerHTML = jsonData['humidity']
+                          document.getElementById('vco_index').innerHTML = jsonData['vco index']
+                          document.getElementById('latitude').innerHTML = jsonData['latitude']
+                          document.getElementById('longitude').innerHTML = jsonData['longitude']
+                        }
+                    
+                        setInterval(getData, 3000)
+                    
+                      </script>
+                    </body>
+                    
+                    </html>ex items-center">
                     <div class="flex-shrink-0 ml-10">
                       <img class="h-12 w-17" src="./static/images/Kora.PNG" alt="KORA-1 logo">
                     </div>
