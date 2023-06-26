@@ -40,13 +40,13 @@ def get_json_data():
 def get_image():
     image_path = 'static/images/processed_image.jpg'
 
-
 # Route that will accept POST data and save it to data.json
 @app.route('/post_data', methods=['POST'])
 def post_json_data():
     global data
     if request.method == 'POST':
         data = request.get_json()
+        print('Received data: ', data)
         with open('data.json', 'w') as f:
             json.dump(data, f)
         return jsonify(data)
@@ -54,4 +54,4 @@ def post_json_data():
 if __name__ == '__main__':
     thread = Thread(target=fetch_data).start()
     thread.start() 
-    app.run(debug=True, port=os.getenv("PORT", default=5000), host='0.0.0.0', threaded=True)
+    app.run(debug=True, port=5000, host='0.0.0.0', threaded=True)
